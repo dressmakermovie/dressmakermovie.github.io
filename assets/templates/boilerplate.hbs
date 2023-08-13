@@ -11,10 +11,22 @@
     {{>CSS name="boilerplate"}}
 </head>
 
-<body>
+<body style="
+        background-image: url({{URL}}public/background.jpg);
+        background-size: cover;
+    ">
 
-    {{!-- Rest of document --}}
-    {{>@partial-block}}
+    <center>
+        <div class="main">
+            <div class="inner">
+                {{>@partial-block}}
+
+                <footer class="faint">
+                    &copy; Copyright 2015
+                </footer>
+            </div>
+        </div>
+    </center>
 
 </body>
 
