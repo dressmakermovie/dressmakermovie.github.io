@@ -4,5 +4,6 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+dircpy = "0.3.15"
 unreact = "0.7.0"
 

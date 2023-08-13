@@ -14,7 +14,17 @@ fn main() -> Result<(), Error> {
         // Complete app
         .run()?;
 
-    // Only prints if NOT in dev mode
+    for file in std::fs::read_dir("ssl")
+        .expect("Failed to read directory 'ssl'")
+        .flatten()
+    {
+        let filename = file.file_name();
+        let filename = filename.to_string_lossy().to_string();
+
+        dircpy::copy_dir(format!("ssl/{filename}"), format!("build/{filename}"))
+            .expect("Failed to copy file from 'ssl'");
+    }
+
     println!("Compiled for production.");
     Ok(())
 }
