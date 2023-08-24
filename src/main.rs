@@ -33,6 +33,6 @@ fn expose_root_files() {
         let filename = filename.to_string_lossy().to_string();
 
         dircpy::copy_dir(format!("assets/root/{filename}"), format!("build/{filename}"))
-            .expect("Failed to copy file from 'ssl'");
+            .expect("Failed to copy file from 'assets/root'");
     }
 }
