@@ -8,12 +8,23 @@ fn main() -> Result<(), Error> {
 
     app
         // Index page
-        .index("~", object! { secret: "Hello!" })?
+        .index("~", object!())?
+        // Characters
+        .route("characters", "characters", object!())?
         // 404 page
-        .not_found("404", object! {})?
+        .not_found("404", object!())?
         // Complete app
         .run()?;
 
+    // Add ssl information to root path (not /public)
+    expose_ssl();
+
+    println!("Compiled for production.");
+    Ok(())
+}
+
+/// Copy all files from `/ssl` to `/build`
+fn expose_ssl() {
     for file in std::fs::read_dir("ssl")
         .expect("Failed to read directory 'ssl'")
         .flatten()
@@ -24,7 +35,4 @@ fn main() -> Result<(), Error> {
         dircpy::copy_dir(format!("ssl/{filename}"), format!("build/{filename}"))
             .expect("Failed to copy file from 'ssl'");
     }
-
-    println!("Compiled for production.");
-    Ok(())
 }
