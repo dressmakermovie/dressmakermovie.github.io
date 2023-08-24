@@ -1,5 +1,9 @@
 <div class="character">
     <p> {{name}} </p>
-    <img src="{{URL}}public/characters/{{id}}.png" alt="{{name}}" />
+    {{#if file}}
+    <img src="{{URL}}public/characters/{{file}}.png" alt="{{name}}" />
+    {{else}}
+    <img src="{{URL}}public/missing.jpg" alt="{{name}} (No image found)" />
+    {{/if}}
 </div>
 
