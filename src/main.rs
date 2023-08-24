@@ -17,22 +17,22 @@ fn main() -> Result<(), Error> {
         .run()?;
 
     // Add ssl information to root path (not /public)
-    expose_ssl();
+    expose_root_files();
 
     println!("Compiled for production.");
     Ok(())
 }
 
-/// Copy all files from `/ssl` to `/build`
-fn expose_ssl() {
-    for file in std::fs::read_dir("ssl")
-        .expect("Failed to read directory 'ssl'")
+/// Copy all files from `/assets/root/*` to `/build/*`
+fn expose_root_files() {
+    for file in std::fs::read_dir("assets/root")
+        .expect("Failed to read directory 'assets/root'")
         .flatten()
     {
         let filename = file.file_name();
         let filename = filename.to_string_lossy().to_string();
 
-        dircpy::copy_dir(format!("ssl/{filename}"), format!("build/{filename}"))
+        dircpy::copy_dir(format!("assets/root/{filename}"), format!("build/{filename}"))
             .expect("Failed to copy file from 'ssl'");
     }
 }
