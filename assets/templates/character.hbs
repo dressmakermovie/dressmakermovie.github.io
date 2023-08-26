@@ -1,9 +1,17 @@
 <div class="character">
     <p> {{name}} </p>
     {{#if file}}
-    <img src="{{URL}}public/characters/{{file}}.png" alt="{{name}}" />
+    <img
+        src="{{URL}}public/characters/{{file}}.png"
+        alt="{{name}}"
+        title="An image of the character '{{name}}' from the film 'The Dressmaker' (2015)"
+    />
     {{else}}
-    <img src="{{URL}}public/missing.jpg" alt="{{name}} (No image found)" />
+    <img
+        src="{{URL}}public/missing.jpg"
+        alt="{{name}} (No image found)"
+        title="No image was found for this character"
+    />
     {{/if}}
 </div>
 
